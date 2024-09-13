@@ -5,12 +5,12 @@ import os
 result = fitz.open()
 pages_count =[]
 
-def save_uploadedfile(uploadedfile, save_path):
+def save_uploadedfile(result, save_path):
     try:
-        with open(os.path.join(save_path,uploadedfile.name),"wb") as f:
-            f.write(uploadedfile.getbuffer())
+        with open(os.path.join(save_path, "merge.pdf"),"wb") as f:
+            f.write(result.get_buffer())
         #return st.success("Saved File:{} to Downloads".format(uploadedfile.name))
-        return st.success(f"Saved File: {uploadedfile.name} to {save_path}")
+        return st.success(f"Saved File: {result.name} to {save_path}")
     except PermissionError as e:
         return st.error(f"Permission denied: {e}")
 
@@ -31,8 +31,8 @@ for pdf in uploaded_pdf:
         doc.close()
 
 if st.button("Save Merged PDF"):
-    #result.save(os.path.join(save_path, "merge-result.pdf"))
-    save_uploadedfile(result, save_path)
+    result.save(os.path.join(save_path, "merge-result.pdf"))
+    #save_uploadedfile(result, save_path)
 #result.save("C:/Users/john.tan/Downloads/merge-result.pdf")
 
 st.write("Total number of pages: ", sum(pages_count))
