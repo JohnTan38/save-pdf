@@ -31,8 +31,8 @@ for pdf in uploaded_pdf:
         doc.close()
 
 if st.button("Save Merged PDF"):
-    result.save(os.path.join(save_path, "merge-result.pdf"))
-    #save_uploadedfile(result, save_path)
+    #result.save(os.path.join(save_path, "merge-result.pdf"))
+    save_uploadedfile(result, save_path)
 #result.save("C:/Users/john.tan/Downloads/merge-result.pdf")
 
 st.write("Total number of pages: ", sum(pages_count))
